@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ห้างหันแตร (HANG HUN TRAE) | ซูเปอร์มินิมาร์ทแห่งอนาคต 2099</title>
+  <meta name="description" content="ห้างหันแตร ซูเปอร์มินิมาร์ทไฮเปอร์สเปซ ให้บริการ 23 ชั่วโมง (05.00 - 04.00 น.) 3 สาขา: ร้อยเอ็ด มหาสารคาม กาฬสินธุ์ พร้อมระบบส่งโดรนและสินค้าชีวสังเคราะห์">
+  
+  <!-- Google Fonts for Cyberpunk & Modern Thai Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Orbitron:wght@500;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="cyan">
+
+  <!-- Background Canvas for Interactive Cyber Grid -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="ambient-glow"></div>
+
+  <div class="app-container">
+
+    <!-- Top Live Status Bar -->
+    <aside class="top-status-bar" aria-label="สถานะระบบ">
+      <div class="container status-bar-content">
+        <div class="status-indicator">
+          <span class="status-dot" id="store-status-dot"></span>
+          <span id="store-status-text"><strong>ONLINE</strong> (เปิด 05:00 - 04:00 น. ให้บริการ 23 ชม.)</span>
+        </div>
+        <div class="quick-tech-tags">
+          <span class="tech-tag">⏰ <span id="live-quantum-clock">--:--:-- ICT</span></span>
+          <span class="tech-tag">🛸 โดรนสแตนด์บาย 100%</span>
+          <span class="tech-tag">⚡ ระบบพักรีสต็อก 04:00 - 05:00 น.</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Navigation Bar -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="#hero" class="brand-logo" title="ห้างหันแตร ซูเปอร์มินิมาร์ท">
+          <div class="logo-badge">
+            <span style="font-size: 1.5rem;">🛸</span>
+          </div>
+          <div class="brand-title">
+            <span class="brand-name">ห้างหันแตร</span>
+            <span class="brand-sub">HANG HUN TRAE • CYBER MART</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav>
+          <ul class="nav-links" id="site-nav-links">
+            <li><a href="#hero" class="nav-link active"><span>//</span> หน้าแรก</a></li>
+            <li><a href="#branches" class="nav-link"><span>//</span> 3 สาขา</a></li>
+            <li><a href="#promotions" class="nav-link"><span>//</span> โปรโมชัน</a></li>
+            <li><a href="#catalog" class="nav-link"><span>//</span> สินค้าล้ำยุค</a></li>
+            <li><a href="#contact" class="nav-link"><span>//</span> ติดต่อเรา</a></li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="nav-actions">
+          <!-- Audio Synthesizer Toggle -->
+          <button class="icon-btn" onclick="toggleSound()" title="เปิด/ปิดเสียงเอฟเฟกต์ไซไฟ" aria-label="เปิด/ปิดเสียง">
+            <span id="sound-icon">🔇</span>
+          </button>
+
+          <!-- Color Theme Switcher -->
+          <button class="icon-btn" onclick="cycleTheme()" title="สลับธีมสีไซเบอร์ (Cyan / Magenta / Emerald)" aria-label="สลับธีม">
+            <span>🎨</span>
+          </button>
+
+          <!-- Shopping Cart Drawer Trigger -->
+          <button class="icon-btn" onclick="toggleCartDrawer(true)" title="เปิดตะกร้าสินค้าไซเบอร์" aria-label="ตะกร้าสินค้า">
+            <span>🛒</span>
+            <span class="cart-count" id="cart-count">1</span>
+          </button>
+
+          <!-- Quick Order CTA -->
+          <a href="#catalog" class="btn-cyber" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
+            <span>⚡ สั่งซื้อด่วน</span>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button class="icon-btn mobile-menu-toggle" id="mobile-menu-btn" aria-label="เปิดเมนูมือถือ">
+            <span>☰</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge-pill">
+              <span>● THE FIRST QUANTUM CONVENIENCE NETWORK IN NEO-ISAN</span>
+            </div>
+            <h1 class="hero-title">
+              ห้างหันแตร<br>
+              <span class="hero-highlight">ซูเปอร์มินิมาร์ท</span> 2099
+            </h1>
+            <p class="hero-desc">
+              สัมผัสประสบการณ์ช้อปปิ้งสะดวกซื้อระดับไฮเปอร์สเปซแห่งแรกในภาคอีสาน 
+              พร้อมเสิร์ฟอาหารชีวสังเคราะห์ เสบียงเพิ่มพลังงาน และของใช้ล้ำยุค 
+              เชื่อมต่อ 3 มหานครไซเบอร์ <strong>ร้อยเอ็ด • มหาสารคาม • กาฬสินธุ์</strong>
+            </p>
+
+            <!-- Store Opening Hours Card -->
+            <div class="hero-hours-card">
+              <div class="hero-hours-time">
+                <div class="hero-hours-icon">⏰</div>
+                <div>
+                  <div class="hero-hours-label">เวลาเปิด-ปิด ทำการ</div>
+                  <div class="hero-hours-value">05:00 น. — 04:00 น.</div>
+                </div>
+              </div>
+              <div class="hero-hours-note">
+                ⚡ เปิดบริการยาวนาน 23 ชม. / พักรีเซ็ตระบบ AI เพียง 04:00 - 05:00 น.
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="hero-cta-group">
+              <a href="#branches" class="btn-cyber">
+                <span>📍 สำรวจ 3 สาขา</span>
+              </a>
+              <a href="#promotions" class="btn-cyber btn-cyber-magenta">
+                <span>🔥 โปรโมชันฮอต</span>
+              </a>
+              <a href="#catalog" class="btn-cyber btn-cyber-outline">
+                <span>🛒 สินค้าไฮเทค</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Holographic Radar Display -->
+          <div class="hero-visual">
+            <div class="holo-display-frame">
+              <div class="holo-header">
+                <span class="holo-node-tag">SYSTEM STATUS: FULL ONLINE</span>
+                <span style="font-size: 0.75rem; color: var(--cyber-cyan);">GRID: ISAN-NET-v4</span>
+              </div>
+
+              <div class="holo-radar-ring">
+                <div class="radar-sweep"></div>
+                <div class="holo-center-logo">
+                  <div class="holo-center-icon">🛸</div>
+                  <div style="font-family: var(--font-display); font-weight:800; font-size:1.1rem; color:#fff; margin-top:0.5rem;">
+                    HANG HUN TRAE
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--cyber-cyan); letter-spacing:1px;">
+                    QUANTUM MINI MART
+                  </div>
+                </div>
+              </div>
+
+              <!-- Node Hub Statistics -->
+              <div class="holo-stats-grid">
+                <div class="holo-stat-card">
+                  <div class="holo-stat-num">3</div>
+                  <div class="holo-stat-txt">สาขาหลักอีสาน</div>
+                </div>
+                <div class="holo-stat-card">
+                  <div class="holo-stat-num">23 h</div>
+                  <div class="holo-stat-txt">บริการต่อวัน</div>
+                </div>
+                <div class="holo-stat-card">
+                  <div class="holo-stat-num">8 min</div>
+                  <div class="holo-stat-txt">โดรนส่งถึงบ้าน</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Branches Section (3 สาขา) -->
+      <section id="branches" class="section-wrapper" style="background: rgba(12, 18, 34, 0.4);">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">// LOCATIONS & CYBER NODES</span>
+            <h2 class="section-title">3 สาขายุทธศาสตร์แห่งอนาคต</h2>
+            <p class="section-desc">
+              ห้างหันแตร เปิดให้บริการครอบคลุม 3 จังหวัดศูนย์กลางอีสาน ทุกสาขาเปิดทำการ 
+              <strong>05:00 น. ถึง 04:00 น.</strong> พร้อมจุดรับส่งโดรนความเร็วสูง
+            </p>
+          </div>
+
+          <!-- Branch Filter Tabs -->
+          <div class="branches-nav-tabs">
+            <button class="branch-tab-btn active" data-branch="all" onclick="switchBranchTab('all')">
+              <span>🌐</span> ทุกสาขา
+            </button>
+            <button class="branch-tab-btn" data-branch="roiet" onclick="switchBranchTab('roiet')">
+              <span>🗼</span> สาขาร้อยเอ็ด
+            </button>
+            <button class="branch-tab-btn" data-branch="sarakham" onclick="switchBranchTab('sarakham')">
+              <span>🎓</span> สาขามหาสารคาม
+            </button>
+            <button class="branch-tab-btn" data-branch="kalasin" onclick="switchBranchTab('kalasin')">
+              <span>🦕</span> สาขากาฬสินธุ์
+            </button>
+          </div>
+
+          <!-- Branch Cards Grid -->
+          <div class="branch-cards-container">
+
+            <!-- Branch 1: ร้อยเอ็ด -->
+            <article class="branch-card featured" data-branch="roiet">
+              <span class="branch-card-badge">NODE #01 • ROI-ET</span>
+              <div class="branch-icon-wrap">🗼</div>
+              <h3 class="branch-name">สาขา ร้อยเอ็ด</h3>
+              <div class="branch-subnode">Skytower Quantum Hub (หอโหวด 101)</div>
+
+              <div class="branch-hours-highlight">
+                <span>⏰ เวลาเปิด-ปิด</span>
+                <span>05:00 - 04:00 น.</span>
+              </div>
+
+              <ul class="branch-info-list">
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  <div>
+                    <strong>ที่อยู่:</strong> 101/9 ถ.สุริยเดชบำรุง ต.ในเมือง อ.เมือง จ.ร้อยเอ็ด 45000 
+                    <br><span style="font-size:0.8rem; color:var(--text-dim);">(พลาซ่าเทียบท่าโดรน ชั้น 21 ฝั่งตะวันออก ใกล้หอโหวด 101)</span>
+                  </div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <div><strong>โทรศัพท์:</strong> 043-101-999</div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <div><strong>ช่วงพักบำรุง:</strong> 04:00 - 05:00 น. (เติมสินค้าด้วยหุ่นยนต์)</div>
+                </li>
+              </ul>
+
+              <div class="branch-features-tags">
+                <span class="branch-feat-tag">🛸 ลานโดรน 12 ช่อง</span>
+                <span class="branch-feat-tag">⚡ EV Hyper-Charge</span>
+                <span class="branch-feat-tag">📦 เทเลพอร์ตล็อกเกอร์</span>
+              </div>
+
+              <div class="branch-action-row">
+                <button class="btn-cyber" onclick="copyBranchCoords('16.0538° N, 103.6520° E', 'ร้อยเอ็ด')">
+                  📋 คัดลอกพิกัด
+                </button>
+                <a href="#contact" class="btn-cyber btn-cyber-outline">
+                  💬 ติดต่อสาขานี้
+                </a>
+              </div>
+            </article>
+
+            <!-- Branch 2: มหาสารคาม -->
+            <article class="branch-card" data-branch="sarakham">
+              <span class="branch-card-badge">NODE #02 • MAHA SARAKHAM</span>
+              <div class="branch-icon-wrap">🎓</div>
+              <h3 class="branch-name">สาขา มหาสารคาม</h3>
+              <div class="branch-subnode">Taksila Cyber Campus Node (ม.มหาสารคาม)</div>
+
+              <div class="branch-hours-highlight">
+                <span>⏰ เวลาเปิด-ปิด</span>
+                <span>05:00 - 04:00 น.</span>
+              </div>
+
+              <ul class="branch-info-list">
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  <div>
+                    <strong>ที่อยู่:</strong> 240 หมู่ 1 ถ.สารคาม-วาปีปทุม ต.ขามเรียง อ.กันทรวิชัย จ.มหาสารคาม 44150 
+                    <br><span style="font-size:0.8rem; color:var(--text-dim);">(ตรงข้ามสถานีโมโนเรล ม.มหาสารคาม แคมปัสขามเรียง)</span>
+                  </div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <div><strong>โทรศัพท์:</strong> 043-777-240</div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <div><strong>ช่วงพักบำรุง:</strong> 04:00 - 05:00 น. (ระบบฉายแสงฆ่าเชื้อ)</div>
+                </li>
+              </ul>
+
+              <div class="branch-features-tags">
+                <span class="branch-feat-tag">💻 Cyber Study Pod 24h</span>
+                <span class="branch-feat-tag">☕ AI Nitro Coffee Bar</span>
+                <span class="branch-feat-tag">💤 Alpha Sleep Pod</span>
+              </div>
+
+              <div class="branch-action-row">
+                <button class="btn-cyber" onclick="copyBranchCoords('16.2442° N, 103.2501° E', 'มหาสารคาม')">
+                  📋 คัดลอกพิกัด
+                </button>
+                <a href="#contact" class="btn-cyber btn-cyber-outline">
+                  💬 ติดต่อสาขานี้
+                </a>
+              </div>
+            </article>
+
+            <!-- Branch 3: กาฬสินธุ์ -->
+            <article class="branch-card" data-branch="kalasin">
+              <span class="branch-card-badge">NODE #03 • KALASIN</span>
+              <div class="branch-icon-wrap">🦕</div>
+              <h3 class="branch-name">สาขา กาฬสินธุ์</h3>
+              <div class="branch-subnode">Dino-BioSynthetics Node (ใจกลางเมือง)</div>
+
+              <div class="branch-hours-highlight">
+                <span>⏰ เวลาเปิด-ปิด</span>
+                <span>05:00 - 04:00 น.</span>
+              </div>
+
+              <ul class="branch-info-list">
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  <div>
+                    <strong>ที่อยู่:</strong> 88 ถ.ถีนานนท์ ต.กาฬสินธุ์ อ.เมือง จ.กาฬสินธุ์ 46000 
+                    <br><span style="font-size:0.8rem; color:var(--text-dim);">(โซนเศรษฐกิจไดโนสเปซ ติดสวนสาธารณะกุดน้ำกิน)</span>
+                  </div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <div><strong>โทรศัพท์:</strong> 043-888-088</div>
+                </li>
+                <li class="branch-info-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <div><strong>ช่วงพักบำรุง:</strong> 04:00 - 05:00 น. (ปรับสภาพอากาศไบโอ)</div>
+                </li>
+              </ul>
+
+              <div class="branch-features-tags">
+                <span class="branch-feat-tag">🥗 ผักไร้แรงโน้มถ่วง Zero-G</span>
+                <span class="branch-feat-tag">🧬 อาหารชีวสังเคราะห์พรีเมียม</span>
+                <span class="branch-feat-tag">🩺 สแกนเนอร์โภชนาการ DNA</span>
+              </div>
+
+              <div class="branch-action-row">
+                <button class="btn-cyber" onclick="copyBranchCoords('16.4322° N, 103.5068° E', 'กาฬสินธุ์')">
+                  📋 คัดลอกพิกัด
+                </button>
+                <a href="#contact" class="btn-cyber btn-cyber-outline">
+                  💬 ติดต่อสาขานี้
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Promotions Section (โปรโมชัน) -->
+      <section id="promotions" class="section-wrapper">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag" style="color:var(--cyber-magenta)">// SPECIAL CAMPAIGNS & PROMOTIONS</span>
+            <h2 class="section-title">โปรโมชันมิติใหม่แห่งการช้อป</h2>
+            <p class="section-desc">
+              อัปเกรดความคุ้มค่าด้วยโปรโมชันสุดล้ำ สิทธิพิเศษสำหรับชาวห้างหันแตรทั่วทั้ง 3 สาขา
+            </p>
+          </div>
+
+          <div class="promo-grid">
+
+            <!-- Promo 1: Midnight Neon Flash Sale -->
+            <div class="promo-card promo-card-wide">
+              <div>
+                <span class="promo-tag-badge badge-flash">⚡ MIDNIGHT CAMPAIGN</span>
+                <div class="promo-discount-num">ลด 35%</div>
+                <h3 class="promo-title">Neon Midnight Flash Sale (22:00 - 03:00 น.)</h3>
+                <p class="promo-desc">
+                  คนนอนดึกถูกใจสิ่งนี้! ซื้ออาหารกล่องอุ่นร้อนด้วยไมโครเวฟไอออนิก เบเกอรี่อวกาศ 
+                  และเครื่องดื่ม Cyber Pulse Energy Drink ทุกรสชาติ ลดทันที 35% เมื่อช้อปในช่วงเวลาดังกล่าว
+                </p>
+              </div>
+              <div class="promo-validity">
+                <span>⏱ ทุกวัน เวลา 22:00 - 03:00 น. | ทั้ง 3 สาขา</span>
+                <button class="promo-claim-btn" onclick="showToast('รับสิทธิ์ส่วนลด Midnight Flash Sale สำเร็จ!', 'success')">รับสิทธิ์ด่วน</button>
+              </div>
+            </div>
+
+            <!-- Promo 2: Drone Air-Drop Delivery -->
+            <div class="promo-card">
+              <div>
+                <span class="promo-tag-badge badge-drone">🛸 AIR-DROP FREE</span>
+                <div class="promo-discount-num" style="background: linear-gradient(135deg, #fff 20%, var(--cyber-green) 100%); -webkit-background-clip: text;">ฟรี 0฿</div>
+                <h3 class="promo-title">ส่งด่วนโดรนไฮโดรเจน 8 นาที</h3>
+                <p class="promo-desc">
+                  สั่งซื้อสินค้าผ่านแอปหรือเว็บครบ 199 เครดิต (บาท) บริการส่งโดรนแอร์ดร็อปถึงดาดฟ้าหรือระเบียงห้องฟรีทันทีในรัศมี 15 กม.
+                </p>
+              </div>
+              <div class="promo-validity">
+                <span>📍 ร้อยเอ็ด • มหาสารคาม • กาฬสินธุ์</span>
+                <button class="promo-claim-btn" onclick="showToast('ปลดล็อกคูปองโดรนส่งฟรีแล้ว!', 'success')">เก็บคูปอง</button>
+              </div>
+            </div>
+
+            <!-- Promo 3: Quantum Member NFT Point X3 -->
+            <div class="promo-card">
+              <div>
+                <span class="promo-tag-badge badge-quantum">🧬 QUANTUM MEMBERS</span>
+                <div class="promo-discount-num" style="background: linear-gradient(135deg, #fff 20%, var(--cyber-cyan) 100%); -webkit-background-clip: text;">POINTS X3</div>
+                <h3 class="promo-title">แต้มแตรคอยน์ (TRAE COIN) คูณ 3</h3>
+                <p class="promo-desc">
+                  ทุกการชำระเงินผ่านระบบ Neuro-Pay หรือสแกนควอนตัมคิวอาร์ รับคะแนนสะสมคูณสามเท่า แลกรับคูปองอาหารสังเคราะห์และสินค้าลิมิเต็ด
+                </p>
+              </div>
+              <div class="promo-validity">
+                <span>💎 สมาชิกห้างหันแตรทุกระดับ</span>
+                <button class="promo-claim-btn" onclick="showToast('เปิดใช้งานคูณแต้ม X3 สำเร็จ!', 'success')">เชื่อมกระเป๋า</button>
+              </div>
+            </div>
+
+            <!-- Promo 4: 1 แถม 1 Friday Isan Cyber-Bites -->
+            <div class="promo-card">
+              <div>
+                <span class="promo-tag-badge badge-food">🌭 1 แถม 1 สตรีทฟู้ดอวกาศ</span>
+                <div class="promo-discount-num" style="background: linear-gradient(135deg, #fff 20%, var(--cyber-amber) 100%); -webkit-background-clip: text;">1 GET 1</div>
+                <h3 class="promo-title">ไส้กรอกอีสานชีสพลาสม่า & ข้าวจี่คอสมิก</h3>
+                <p class="promo-desc">
+                  สุดยอดเมนูไฮไลท์แห่งอีสานไซเบอร์ ไส้กรอกอีสานชีสเยิ้มพลาสม่า และข้าวจี่ทาไข่เคลือบผลึกเกลืออวกาศ ซื้อ 1 ชิ้น แถมฟรีอีก 1 ชิ้น ทุกวันศุกร์
+                </p>
+              </div>
+              <div class="promo-validity">
+                <span>📅 ทุกวันศุกร์ ตลอด 23 ชั่วโมง</span>
+                <button class="promo-claim-btn" onclick="showToast('บันทึกคูปอง 1 แถม 1 ในระบบแล้ว!', 'success')">รับโปรศุกร์นี้</button>
+              </div>
+            </div>
+
+            <!-- Promo 5: Antimatter Cold Brew 1 บาท -->
+            <div class="promo-card">
+              <div>
+                <span class="promo-tag-badge badge-quantum">☕ ANTIMATTER COFFEE</span>
+                <div class="promo-discount-num">1 เครดิต</div>
+                <h3 class="promo-title">กาแฟปฏิสสารแก้วที่ 2 เพียง 1 บาท</h3>
+                <p class="promo-desc">
+                  กาแฟสกัดเย็นไนโตรด้วยแรงดันสุญญากาศ รสชาติตื่นเต็มตาต้านแรงโน้มถ่วง เมื่อซื้อแก้วขนาด 22oz แก้วแรก แก้วที่ 2 จ่ายเพียง 1 เครดิต
+                </p>
+              </div>
+              <div class="promo-validity">
+                <span>🔋 สาขา มหาสารคาม & ร้อยเอ็ด</span>
+                <button class="promo-claim-btn" onclick="showToast('รับสิทธิ์กาแฟ 1 เครดิตแล้ว!', 'success')">รับสิทธิ์</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Futuristic Catalog / Smart Shelves -->
+      <section id="catalog" class="section-wrapper" style="background: rgba(12, 18, 34, 0.4);">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">// SMART REPLICATOR & SHELVES</span>
+            <h2 class="section-title">สินค้าและเสบียงล้ำยุคในร้าน</h2>
+            <p class="section-desc">
+              กดเพิ่มสินค้าลงในตะกร้าไซเบอร์เพื่อคำนวณเครดิตและจำลองการสั่งซื้อด่วน
+            </p>
+          </div>
+
+          <!-- Product Filters -->
+          <div class="catalog-filter-bar">
+            <button class="catalog-pill active" data-category="all">ทั้งหมด</button>
+            <button class="catalog-pill" data-category="food">🥩 อาหารชีวสังเคราะห์</button>
+            <button class="catalog-pill" data-category="drink">⚡ เครื่องดื่มชูกำลังนีออน</button>
+            <button class="catalog-pill" data-category="tech">🤖 อุปกรณ์ไซเบอร์พกพา</button>
+            <button class="catalog-pill" data-category="health">💊 เม็ดฟื้นฟูนาโน</button>
+          </div>
+
+          <!-- Catalog Grid -->
+          <div class="catalog-grid">
+
+            <!-- Item 1 -->
+            <div class="product-card" data-category="food">
+              <div class="product-img-box">
+                <span class="product-tag">BEST SELLER</span>
+                🌭
+              </div>
+              <h4 class="product-title">ไส้กรอกอีสานชีสพลาสม่า</h4>
+              <p class="product-desc">เนื้อสังเคราะห์เกรดชีวภาพ ผสมชีสยืดพลาสม่า หอมกลิ่นควันรมระดับอนุภาค</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">45</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(1, 'ไส้กรอกอีสานชีสพลาสม่า', 45)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card" data-category="food">
+              <div class="product-img-box">
+                <span class="product-tag">ISAN 2099</span>
+                🍙
+              </div>
+              <h4 class="product-title">ข้าวจี่คอสมิกแร่ดาวอังคาร</h4>
+              <p class="product-desc">ข้าวเหนียวสังเคราะห์อัดความร้อน เคลือบไข่ไก่ไฮโดรและแร่เกลือคอสมิก กรอบนอกนุ่มใน</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">35</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(2, 'ข้าวจี่คอสมิกแร่ดาวอังคาร', 35)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card" data-category="drink">
+              <div class="product-img-box">
+                <span class="product-tag">HYPER ENERGIZER</span>
+                🧪
+              </div>
+              <h4 class="product-title">Cyber Pulse Energy Elixir</h4>
+              <p class="product-desc">เครื่องดื่มอิเล็กโทรไลต์นีออนสีฟ้า บูสต์สมาธิและฟื้นพลังความจำใน 3 นาที</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">28</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(3, 'Cyber Pulse Energy Elixir', 28)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="product-card" data-category="drink">
+              <div class="product-img-box">
+                <span class="product-tag">ZERO GRAVITY</span>
+                ☕
+              </div>
+              <h4 class="product-title">Antimatter Cold Brew Coffee</h4>
+              <p class="product-desc">กาแฟสกัดเย็นไนโตรความดันสุญญากาศ ตื่นตัวยาวนาน 14 ชั่วโมง ไม่มีอาการใจสั่น</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">55</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(4, 'Antimatter Cold Brew Coffee', 55)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="product-card" data-category="food">
+              <div class="product-img-box">
+                <span class="product-tag">KALASIN EXCLUSIVE</span>
+                🥗
+              </div>
+              <h4 class="product-title">ส้มตำชีวสังเคราะห์ Zero-G</h4>
+              <p class="product-desc">มะละกอไฮโดรโปนิกส์ไร้แรงโน้มถ่วง คลุกเคล้าผงน้ำปลาร้าสังเคราะห์ระดับโมเลกุล แซ่บถึงใจ</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">60</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(5, 'ส้มตำชีวสังเคราะห์ Zero-G', 60)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="product-card" data-category="health">
+              <div class="product-img-box">
+                <span class="product-tag">NANO RECOVERY</span>
+                💊
+              </div>
+              <h4 class="product-title">Neuro-Focus Stim Capsule</h4>
+              <p class="product-desc">แคปซูลสารอาหารบำรุงเซลล์ประสาท เหมาะสำหรับอ่านหนังสือสอบหรือทำงานกะดึก</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">89</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(6, 'Neuro-Focus Stim Capsule', 89)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="product-card" data-category="tech">
+              <div class="product-img-box">
+                <span class="product-tag">HARDWARE</span>
+                🔋
+              </div>
+              <h4 class="product-title">พาวเวอร์แบงก์ควอนตัมโซลิดสเตต</h4>
+              <p class="product-desc">ชาร์จสมาร์ตดีไวซ์ได้ 10 รอบเต็ม จ่ายไฟเสถียรด้วยเทคโนโลยีเซลล์ไอออนรุ่นล่าสุด</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">399</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(7, 'พาวเวอร์แบงก์ควอนตัมโซลิดสเตต', 399)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="product-card" data-category="tech">
+              <div class="product-img-box">
+                <span class="product-tag">CYBER WEAR</span>
+                👓
+              </div>
+              <h4 class="product-title">แว่นตาโฮโลแกรมกันแสงบลูไลต์</h4>
+              <p class="product-desc">เลนส์กรองแสงสะท้อนระดับ 99.9% พร้อมจอ HUD ขนาดเล็กแสดงเวลาและแจ้งเตือนมาร์ท</p>
+              <div class="product-footer">
+                <div>
+                  <span class="product-price">450</span>
+                  <span class="product-price-currency">เครดิต (฿)</span>
+                </div>
+                <button class="btn-add-cart" onclick="addToCart(8, 'แว่นตาโฮโลแกรมกันแสงบลูไลต์', 450)" title="เพิ่มลงตะกร้า">+</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Neural Comms Section (ช่องทางติดต่อ) -->
+      <section id="contact" class="section-wrapper">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">// QUANTUM CHANNELS & COMMS</span>
+            <h2 class="section-title">ช่องทางติดต่อห้างหันแตร</h2>
+            <p class="section-desc">
+              เชื่อมต่อสัญญาณกับศูนย์บัญชาการห้างหันแตรและทั้ง 3 สาขาได้ตลอด 24 ชั่วโมง
+            </p>
+          </div>
+
+          <div class="contact-grid">
+
+            <!-- Contact Channels List -->
+            <div class="contact-channels-box">
+              
+              <!-- Phone Hotline -->
+              <a href="tel:043999777" class="channel-card">
+                <div class="channel-icon">📞</div>
+                <div>
+                  <div class="channel-label">ฮอตไลน์สั่งซื้อด่วน & ฉุกเฉิน</div>
+                  <div class="channel-val">043-999-777</div>
+                  <div class="channel-sub">สายด่วนรวม 3 สาขา (บริการ 05:00 - 04:00 น.)</div>
+                </div>
+              </a>
+
+              <!-- LINE Official / Cyber Bot -->
+              <a href="https://line.me" target="_blank" rel="noopener noreferrer" class="channel-card">
+                <div class="channel-icon" style="color:var(--cyber-green); border-color:var(--cyber-green);">💬</div>
+                <div>
+                  <div class="channel-label">LINE OFFICIAL / AI ASSISTANT</div>
+                  <div class="channel-val">@hanghuntrae_cyber</div>
+                  <div class="channel-sub">พูดคุยกับ "น้องแตรบอท" AI สั่งของและเช็กสต็อกทันที</div>
+                </div>
+              </a>
+
+              <!-- Social Facebook / Metaverse -->
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="channel-card">
+                <div class="channel-icon" style="color:var(--cyber-cyan);">🌐</div>
+                <div>
+                  <div class="channel-label">FACEBOOK & METAVERSE PORTAL</div>
+                  <div class="channel-val">facebook.com/HangHunTraeFuturistic</div>
+                  <div class="channel-sub">อัปเดตโปรโมชันและนวัตกรรมใหม่ทุกสัปดาห์</div>
+                </div>
+              </a>
+
+              <!-- Hologram Frequency / Email -->
+              <a href="mailto:contact@hanghuntrae.future" class="channel-card">
+                <div class="channel-icon" style="color:var(--cyber-purple); border-color:var(--cyber-purple);">📡</div>
+                <div>
+                  <div class="channel-label">QUANTUM MAIL & FREQUENCY</div>
+                  <div class="channel-val">contact@hanghuntrae.future</div>
+                  <div class="channel-sub">Sub-Space Frequency: #77.90 MHz (Metaverse Hub)</div>
+                </div>
+              </a>
+
+            </div>
+
+            <!-- Holographic Interactive Transmission Form -->
+            <div class="contact-form-card">
+              <div class="form-header">
+                <div>
+                  <h3 style="font-family:var(--font-display); font-size:1.2rem; color:#fff;">ส่งคลื่นสัญญาณถึงเรา</h3>
+                  <p style="font-size:0.8rem; color:var(--text-muted);">DIRECT QUANTUM TRANSMISSION</p>
+                </div>
+                <span class="tech-tag">ENCRYPTED 4096-BIT</span>
+              </div>
+
+              <form id="cyber-contact-form" onsubmit="handleContactSubmit(event)">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-name">ชื่อผู้ส่งสัญญาณ (Name / ID):</label>
+                    <input type="text" id="contact-name" class="form-input" placeholder="เช่น กัปตันสมชาย ไซเบอร์" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contact-phone">เบอร์ติดต่อ / Neural ID:</label>
+                    <input type="text" id="contact-phone" class="form-input" placeholder="08x-xxx-xxxx" required>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="contact-branch">เลือกสาขาปลายทาง:</label>
+                    <select id="contact-branch" class="form-select" required>
+                      <option value="ร้อยเอ็ด">สาขา ร้อยเอ็ด (Skytower Node)</option>
+                      <option value="มหาสารคาม">สาขา มหาสารคาม (Campus Node)</option>
+                      <option value="กาฬสินธุ์">สาขา กาฬสินธุ์ (Dino-Bio Node)</option>
+                      <option value="ศูนย์บัญชาการกลาง">ศูนย์บัญชาการกลางห้างหันแตร</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contact-subject">หัวข้อเรื่อง:</label>
+                    <input type="text" id="contact-subject" class="form-input" placeholder="สั่งโดรนด่วน / สอบถามสต็อกสินค้า" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contact-message">ข้อความที่ต้องการส่ง (Transmission Message):</label>
+                  <textarea id="contact-message" class="form-textarea" rows="4" placeholder="พิมพ์ข้อความของคุณที่นี่..." required></textarea>
+                </div>
+
+                <button type="submit" id="contact-submit-btn" class="btn-cyber" style="width:100%; padding:0.9rem;">
+                  <span>⚡ TRANSMIT DATA (ส่งข้อมูลทันที)</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Cart Drawer Modal -->
+    <div class="cyber-modal-overlay" id="cart-modal-overlay" onclick="if(event.target===this) toggleCartDrawer(false)">
+      <div class="cart-drawer">
+        <div class="cart-drawer-head">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span style="font-size:1.4rem;">🛒</span>
+            <h3 style="font-family:var(--font-display); font-size:1.15rem; color:#fff;">ตะกร้าสินค้าไซเบอร์</h3>
+          </div>
+          <button class="icon-btn" onclick="toggleCartDrawer(false)" aria-label="ปิดตะกร้า">✕</button>
+        </div>
+
+        <div class="cart-items-list" id="cart-items-list">
+          <!-- Dynamically populated by JS -->
+        </div>
+
+        <div class="cart-summary">
+          <div class="cart-summary-row">
+            <span>ค่าจัดส่งทางโดรน:</span>
+            <span style="color:var(--cyber-green);">0 เครดิต (โปรโมชัน)</span>
+          </div>
+          <div class="cart-summary-row">
+            <span>ยอดรวมสินค้า:</span>
+            <span id="cart-subtotal">45 เครดิต</span>
+          </div>
+          <div class="cart-total-row">
+            <span>ยอดชำระสุทธิ:</span>
+            <span id="cart-total" style="color:var(--cyber-cyan);">45 เครดิต</span>
+          </div>
+          <button class="btn-cyber" onclick="checkoutCart()" style="width:100%; padding:0.85rem;">
+            <span>💳 ชำระเงินผ่าน NEURAL-PAY</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          
+          <div class="footer-col">
+            <div class="brand-logo" style="margin-bottom:1rem;">
+              <div class="logo-badge" style="width:36px; height:36px;">🛸</div>
+              <span class="brand-name" style="font-size:1.2rem;">ห้างหันแตร</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6; margin-bottom:1rem;">
+              ห้างหันแตร 2099 มินิมาร์ทแห่งอนาคต ผู้นำนวัตกรรมร้านสะดวกซื้อยุคควอนตัม 
+              เปิดให้บริการ 05.00 - 04.00 น. ครอบคลุม ร้อยเอ็ด, มหาสารคาม, กาฬสินธุ์
+            </p>
+            <div style="font-size:0.8rem; color:var(--cyber-cyan);">
+              // QUANTUM PROTOCOL: VERIFIED 2099
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>3 สาขาหลัก</h4>
+            <ul class="footer-links">
+              <li><a href="#branches">🗼 สาขา ร้อยเอ็ด (หอโหวด 101)</a></li>
+              <li><a href="#branches">🎓 สาขา มหาสารคาม (แคมปัส มมส.)</a></li>
+              <li><a href="#branches">🦕 สาขา กาฬสินธุ์ (ไดโนสเปซ)</a></li>
+              <li><span style="color:var(--cyber-green); font-size:0.8rem;">● เปิดทุกวัน 05:00 - 04:00 น.</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>เมนูลัด</h4>
+            <ul class="footer-links">
+              <li><a href="#hero">หน้าแรก</a></li>
+              <li><a href="#branches">ข้อมูล 3 สาขา</a></li>
+              <li><a href="#promotions">โปรโมชันพิเศษ</a></li>
+              <li><a href="#catalog">สินค้าไฮเทค</a></li>
+              <li><a href="#contact">ช่องทางติดต่อ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>สัญญาณติดต่อ</h4>
+            <ul class="footer-links">
+              <li><span style="color:var(--text-muted);">📞 สายด่วน: </span><a href="tel:043999777">043-999-777</a></li>
+              <li><span style="color:var(--text-muted);">💬 LINE: </span>@hanghuntrae_cyber</li>
+              <li><span style="color:var(--text-muted);">📧 Email: </span>contact@hanghuntrae.future</li>
+              <li><span style="color:var(--text-muted);">⏰ เวลาทำการ: </span>05:00 - 04:00 น. (23 ชม.)</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            © 2099 ห้างหันแตร (HANG HUN TRAE CYBER MART). สงวนลิขสิทธิ์ทุกประการ
+          </div>
+          <div style="display:flex; gap:1.25rem;">
+            <span>SECURITY LEVEL: QUANTUM SHIELD</span>
+            <span>POWERED BY NEO-ISAN TECH</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
